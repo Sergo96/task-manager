@@ -1,5 +1,11 @@
 <?php
 
+use Pecee\SimpleRouter\SimpleRouter;
+
 require_once('../src/bootstrap.php');
 
-(new \ToDo\Controllers\TaskController(\ToDo\Helpers\Container::getInstance()))->getTasksList();
+SimpleRouter::setDefaultNamespace('\ToDo\Controllers');
+
+require_once('../src/routes.php');
+
+SimpleRouter::start();

@@ -2,18 +2,15 @@
 
 namespace ToDo\Controllers;
 
-use ToDO\Helpers\Container;
+use ToDo\Helpers\Container;
 
 abstract class BaseController
 {
     /** @var Container */
     protected $container;
 
-    /**
-     * @param Container $container
-     */
-    public function __construct(Container $container)
+    public function __construct()
     {
-        $this->container = $container;
+        $this->container = Container::getInstance();
     }
 }
