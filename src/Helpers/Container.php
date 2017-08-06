@@ -1,0 +1,84 @@
+<?php
+
+namespace ToDo\Helpers;
+
+/**
+ * @property \PDO           $db
+ * @property array          $config
+ * @property \Twig_Environment           $twig
+ */
+class Container
+{
+    /** @var self */
+    private static $instance;
+
+    /** @var array */
+    protected $services = [];
+
+    protected function __construct() {}
+
+    public static function getInstance()
+    {
+        if (null === self::$instance)
+        {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $data
+     *
+     * @return bool
+     */
+    public function __set($name, $data)
+    {
+        if (is_null($this->{$name})) {
+            $this->services[$name] = $data;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function __get($name)
+    {
+        $service = "";
+
+        if (!isset($this->services[$name])) {
+            switch ($name) {
+                case 'db': {
+                    $service = new \PDO("");
+                } break;
+
+                case 'config': {
+                    $service = [];
+                } break;
+
+                case 'twig': {
+                    $loader = new \Twig_Loader_Filesystem($_SERVER['DOCUMENT_ROOT']."/../views");
+                    $service = new \Twig_Environment($loader);
+                } break;
+            }
+
+            if (!empty($service)) {
+                $this->services[$name] = $service;
+            } else {
+                throw new \Exception("Undefined service name '{$name}'");
+            }
+        }
+
+        return $this->services[$name];
+    }
+
+    private function __clone() {}
+    private function __wakeup() {}
+}
