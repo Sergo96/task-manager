@@ -56,4 +56,37 @@ WHERE `id` = ?
 
         return $statement->fetch();
     }
+
+    /**
+     * @param string $title
+     * @param string $author_email
+     * @param string $author_name
+     * @param string $status
+     * @param string $description
+     * @param string $image_hash
+     *
+     * @return bool
+     */
+    public function createTask(
+        string $title,
+        string $author_email,
+        string $author_name,
+        string $status,
+        string $description,
+        string $image_hash
+    ) : bool
+    {
+        $statement = $this->db->prepare("
+INSERT INTO `tasks` (`title`, `text`, `author_name`, `email`, `status`, `image_hash`)
+VALUES (:title, :text, :author_name, :author_email, :status, :image_hash)
+");
+        return $statement->execute([
+           ':title'         => $title,
+           ':text'          => $description,
+           ':author_name'   => $author_name,
+           ':author_email'  => $author_email,
+           ':status'        => $status,
+           ':image_hash'    => $image_hash,
+        ]);
+    }
 }

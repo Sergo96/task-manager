@@ -20,4 +20,15 @@ class Base
 
         return '/img/' . $image_hash . '.jpg';
     }
+
+    /**
+     * @param string $url
+     * @param bool   $permanent
+     */
+    public static function redirectTo(string $url, bool $permanent = false) : void
+    {
+        $code = $permanent ? 301 : 302;
+        header('Location: ' . $url, true, $code);
+        exit;
+    }
 }

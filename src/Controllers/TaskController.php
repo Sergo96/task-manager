@@ -2,6 +2,8 @@
 
 namespace ToDo\Controllers;
 
+use Pecee\SimpleRouter\SimpleRouter;
+use ToDo\Helpers\Base;
 use ToDo\Models\TaskModel;
 
 /**
@@ -39,5 +41,20 @@ class TaskController extends BaseController
         $this->container->twig->display('task_full.html.twig', [
             'task_data' => $data,
         ]);
+    }
+
+    public function createTaskAction() : void
+    {
+        $this->container->twig->display('create_task.html.twig');
+    }
+    
+    public function createTask() : void
+    {
+        $params = SimpleRouter::request()->getInput()->post;
+
+        $this->model->createTask($params);
+        $_SESSION['notifications'] = $this->model->getNotifications();
+
+        Base::redirectTo('/create');
     }
 }

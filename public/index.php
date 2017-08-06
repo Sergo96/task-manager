@@ -9,3 +9,5 @@ SimpleRouter::setDefaultNamespace('\ToDo\Controllers');
 require_once('../src/routes.php');
 
 SimpleRouter::start();
+
+unset($_SESSION['notifications']);

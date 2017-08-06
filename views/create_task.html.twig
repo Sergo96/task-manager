@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <div class="well">
+        <form method="post">
+            <div class="form-group">
+                <label for="task-title">Title</label>
+                <input class="form-control" name="task_title" id="task-title" placeholder="Enter title">
+            </div>
+            <div class="form-group">
+                <label for="author-email">Email</label>
+                <input type="email" class="form-control" name="author_email" id="author-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="author-name">Your name</label>
+                <input class="form-control" name="author_name" id="author-name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="task-status">Task status</label>
+                <select class="form-control" name="task_status" id="task-status">
+                    <option>todo</option>
+                    <option>in dev</option>
+                    <option>in test</option>
+                    <option>done</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="task-description">Task description</label>
+                <textarea class="form-control" name="task_description" id="task-description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="task-image">Image</label>
+                <input type="file" class="form-control-file" name="task_image" id="task-image">
+            </div>
+            <div class="text-right">
+                <button type="button" id="preview-button" class="btn btn-lg btn-default">Preview</button>
+                <button type="submit" class="btn btn-lg btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="preview-block" class="invisible col-sm-10 col-xs-8 col-sm-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p class="lead"><span id="preview-title"></span></p>
+                <p>Status: <strong><span id="preview-status"></span></strong></p>
+                <p>Author: <strong><span id="preview-name"></span></strong></p>
+                <p>Email: <strong><span id="preview-email"></span></strong></p>
+                <p>Description: <br>
+                    <div id="preview-text"></div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/pages/create_task.js?v20170807003300"></script>
+{% endblock %}

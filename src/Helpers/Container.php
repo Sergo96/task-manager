@@ -3,8 +3,8 @@
 namespace ToDo\Helpers;
 
 /**
- * @property \PDO           $db
- * @property array          $config
+ * @property \PDO                        $db
+ * @property array                       $config
  * @property \Twig_Environment           $twig
  */
 class Container
@@ -67,6 +67,7 @@ class Container
                 case 'twig': {
                     $loader = new \Twig_Loader_Filesystem($_SERVER['DOCUMENT_ROOT']."/../views");
                     $service = new \Twig_Environment($loader);
+                    $service->addGlobal('notifications', $_SESSION['notifications'] ?? []);
                 } break;
             }
 
