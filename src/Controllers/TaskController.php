@@ -19,7 +19,7 @@ class TaskController extends BaseController
     /**
      * @param int $page
      */
-    public function getTasksList(int $page = 1)
+    public function getTasksList(?int $page = 1)
     {
         $data = $this->model->getTasksList($page);
 

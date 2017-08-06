@@ -21,7 +21,7 @@ class TaskModel extends BaseModel
         $this->repository = new TaskRepository($db);
     }
 
-    public function getTasksList(int $page = 1) : array
+    public function getTasksList(?int $page = 1) : array
     {
         $tasks_list = [];
         $page = ($page >= 1 ? $page : 1);
