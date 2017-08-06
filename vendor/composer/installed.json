@@ -127,5 +127,55 @@
         "keywords": [
             "templating"
         ]
+    },
+    {
+        "name": "pecee/simple-router",
+        "version": "3.3.3",
+        "version_normalized": "3.3.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/skipperbent/simple-php-router.git",
+            "reference": "a40f81d5fc5278ded89f7f4c9c27b4c4c84850e8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/a40f81d5fc5278ded89f7f4c9c27b4c4c84850e8",
+            "reference": "a40f81d5fc5278ded89f7f4c9c27b4c4c84850e8",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.7.7"
+        },
+        "time": "2017-08-01T19:30:42+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Pecee\\": "src/Pecee/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Simon Sessingø",
+                "email": "simon.sessingoe@gmail.com"
+            }
+        ],
+        "description": "Simple, fast PHP router that is easy to get integrated and in almost any project. Heavily inspired by the Laravel router.",
+        "keywords": [
+            "laravel",
+            "pecee",
+            "php",
+            "route",
+            "router",
+            "routing",
+            "simple-php-router"
+        ]
     }
 ]
