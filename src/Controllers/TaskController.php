@@ -2,7 +2,7 @@
 
 namespace ToDo\Controllers;
 
-class ToDo extends BaseController
+class TaskController extends BaseController
 {
 
     /**

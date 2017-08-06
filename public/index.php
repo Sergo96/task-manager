@@ -2,4 +2,4 @@
 
 require_once('../src/bootstrap.php');
 
-(new \ToDo\Controllers\ToDo(\ToDo\Helpers\Container::getInstance()))->getTasksList();
+(new \ToDo\Controllers\TaskController(\ToDo\Helpers\Container::getInstance()))->getTasksList();
