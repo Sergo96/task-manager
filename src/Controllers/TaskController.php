@@ -4,6 +4,9 @@ namespace ToDo\Controllers;
 
 use ToDo\Models\TaskModel;
 
+/**
+ * @property TaskModel model
+ */
 class TaskController extends BaseController
 {
     public function __construct()
@@ -22,7 +25,7 @@ class TaskController extends BaseController
 
         $this->container->twig->display('tasks_list.html.twig', [
             'tasks' => $data['tasks'],
-            'need_pagination' => $data['need_pagination'],
+            'pagination' => $data['pagination'],
         ]);
     }
 }

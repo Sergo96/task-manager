@@ -1,7 +1,8 @@
 {
     "require": {
         "twig/twig": "^2.4",
-        "pecee/simple-router": "^3.3"
+        "pecee/simple-router": "^3.3",
+        "jasongrimes/paginator": "^1.0"
     },
     "autoload": {
         "psr-4": {
