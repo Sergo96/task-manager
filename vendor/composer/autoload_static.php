@@ -19,6 +19,7 @@ class ComposerStaticInit0a6e56a82a9aefaa96f9a3c43b034e78
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\Routing\\' => 26,
         ),
     );
 
@@ -34,6 +35,10 @@ class ComposerStaticInit0a6e56a82a9aefaa96f9a3c43b034e78
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\Routing\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/routing',
         ),
     );
 
