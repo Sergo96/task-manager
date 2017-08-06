@@ -2,14 +2,14 @@
 
 use Pecee\SimpleRouter\SimpleRouter;
 
-SimpleRouter::get('/login/', 'AuthController@getLoginPage');
+SimpleRouter::get('/login/', 'AuthController@tasksListAction');
 SimpleRouter::post('/login/', 'AuthController@login');
 
-SimpleRouter::get('/create/', 'TaskController@createTask');
+SimpleRouter::get('/create/', 'TaskController@createTaskAction');
 
 SimpleRouter::get('/task/{id}', 'TaskController@taskByIdAction', [
     'where' => ['id' => '[0-9]+'],
 ]);
-SimpleRouter::get('/{page}', 'TaskController@getTasksList', [
+SimpleRouter::get('/{page}', 'TaskController@tasksListAction', [
     'where' => ['page' => '[0-9]?'],
 ]);

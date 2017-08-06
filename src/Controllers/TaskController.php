@@ -19,7 +19,7 @@ class TaskController extends BaseController
     /**
      * @param int $page
      */
-    public function getTasksList(?int $page = 1) // TODO rename to Action
+    public function tasksListAction(?int $page = 1) : void
     {
         $data = $this->model->getTasksList($page);
 
