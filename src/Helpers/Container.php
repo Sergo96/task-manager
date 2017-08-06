@@ -56,7 +56,8 @@ class Container
         if (!isset($this->services[$name])) {
             switch ($name) {
                 case 'db': {
-                    $service = new \PDO("");
+                    $service = new \PDO('mysql:host=localhost;dbname=todo', 'root', 'qwerty', [\PDO::FETCH_ASSOC => true]);
+                    $service->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
                 } break;
 
                 case 'config': {
