@@ -6,8 +6,18 @@ namespace ToDo\Helpers;
 
 class Base
 {
-    public static function getImagePath(?string $image_hash = '') : string
+    /**
+     * @param null|string $image_hash
+     * @param bool        $use_default
+     *
+     * @return string
+     */
+    public static function getImagePath(?string $image_hash = '', $use_default = true) : string
     {
-        return '//placehold.it/450X300/DD3333/EE3333'; // TODO it
+        if (empty($image_hash)) {
+            return $use_default ? '//placehold.it/450X300/EEEEEE/776C6C' : '';
+        }
+
+        return '/img/' . $image_hash . '.jpg';
     }
 }

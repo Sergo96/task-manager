@@ -39,4 +39,21 @@ LIMIT :start, :amount"
 
         return (int)$result->fetch()['count'];
     }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function getTaskById(int $id)
+    {
+        $statement = $this->db->prepare("
+SELECT `id`, `title`, `text`, `author_name`, `email`, `status`, `image_hash`
+FROM `tasks`
+WHERE `id` = ?
+;");
+        $statement->execute([$id]);
+
+        return $statement->fetch();
+    }
 }

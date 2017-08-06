@@ -1,6 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
+    <div class="row">
+        <div class="col-sm-offset-10 col-sm-4 col-xs-6">
+            <a href="/create/"><div class="btn btn-lg btn-primary">Create task</div></a>
+        </div>
+    </div>
     <hr>
     <div class="row">
     {% for task in tasks %}

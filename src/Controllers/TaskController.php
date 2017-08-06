@@ -19,13 +19,25 @@ class TaskController extends BaseController
     /**
      * @param int $page
      */
-    public function getTasksList(?int $page = 1)
+    public function getTasksList(?int $page = 1) // TODO rename to Action
     {
         $data = $this->model->getTasksList($page);
 
         $this->container->twig->display('tasks_list.html.twig', [
             'tasks' => $data['tasks'],
             'pagination' => $data['pagination'],
+        ]);
+    }
+
+    /**
+     * @param int $id
+     */
+    public function taskByIdAction(int $id) : void
+    {
+        $data = $this->model->getTaskById($id);
+
+        $this->container->twig->display('task_full.html.twig', [
+            'task_data' => $data,
         ]);
     }
 }

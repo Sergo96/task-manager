@@ -52,4 +52,19 @@ class TaskModel extends BaseModel
             'pagination' => $pagination,
         ];
     }
+
+    public function getTaskById(int $id) : array
+    {
+        $task = $this->repository->getTaskById($id);
+
+        return [
+            'id'            => (int)$task['id'],
+            'title'         => $task['title'],
+            'text'          => $task['text'],
+            'status'        => $task['status'],
+            'author_name'   => $task['author_name'],
+            'author_email'  => $task['email'],
+            'image_path'    => Base::getImagePath($task['image_hash'], false),
+        ];
+    }
 }
