@@ -1,1 +1,24 @@
-Hello
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <hr>
+    <div class="row">
+        <div class="col-sm-4 col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-thumbnail">
+                    <a href="/task/1">
+                        <img src="//placehold.it/450X300/DD3333/EE3333" class="img-responsive">
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <p class="lead">Перша задача</p>
+                    <p>Status: <strong>Todo</strong></p>
+                    <p>Автор: <strong>Sergo</strong></p>
+                    <p>Email: <strong>sergo@sergo.if.ua</strong></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+{% endblock %}
