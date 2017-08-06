@@ -1,7 +1,6 @@
 {
     "require": {
-        "twig/twig": "^2.4",
-        "symfony/routing": "^3.3"
+        "twig/twig": "^2.4"
     },
     "autoload": {
         "psr-4": {

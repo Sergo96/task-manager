@@ -9,5 +9,4 @@ return array(
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'ToDo\\' => array($baseDir . '/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
-    'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
 );
