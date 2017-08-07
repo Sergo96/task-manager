@@ -1,6 +1,7 @@
 <?php
 
 namespace ToDo\Helpers;
+use ToDo\Models\AuthModel;
 
 /**
  * @property \PDO                        $db
@@ -65,9 +66,10 @@ class Container
                 } break;
 
                 case 'twig': {
-                    $loader = new \Twig_Loader_Filesystem($_SERVER['DOCUMENT_ROOT']."/../views");
+                    $loader = new \Twig_Loader_Filesystem($_SERVER['DOCUMENT_ROOT'] . "/../views");
                     $service = new \Twig_Environment($loader);
                     $service->addGlobal('notifications', $_SESSION['notifications'] ?? []);
+                    $service->addGlobal('is_logged_in', AuthModel::isLoggedIn());
                 } break;
             }
 

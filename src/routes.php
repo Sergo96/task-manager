@@ -2,7 +2,7 @@
 
 use Pecee\SimpleRouter\SimpleRouter;
 
-SimpleRouter::get('/login/', 'AuthController@tasksListAction');
+SimpleRouter::get('/login/', 'AuthController@loginPageAction');
 SimpleRouter::post('/login/', 'AuthController@login');
 
 SimpleRouter::get('/create/', 'TaskController@createTaskAction');
