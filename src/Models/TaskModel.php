@@ -111,8 +111,6 @@ class TaskModel extends BaseModel
             $task_status,
             $task_description))
         {
-            // TODO process image
-
             $result = $this->repository->createTask(
                 $title,
                 $author_email,
