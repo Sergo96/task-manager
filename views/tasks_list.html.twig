@@ -50,6 +50,10 @@
                         <p>Status: <strong>{{ task.status }}</strong></p>
                         <p>Автор: <strong>{{ task.author_name }}</strong></p>
                         <p>Email: <strong>{{ task.author_email }}</strong></p>
+
+                        {% if is_logged_in %}
+                            <a href="/edit-task/{{ task.id }}">Edit task</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

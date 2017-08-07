@@ -4,6 +4,7 @@ namespace ToDo\Controllers;
 
 use Pecee\SimpleRouter\SimpleRouter;
 use ToDo\Helpers\Base;
+use ToDo\Models\AuthModel;
 use ToDo\Models\TaskModel;
 
 /**
@@ -62,5 +63,32 @@ class TaskController extends BaseController
         $_SESSION['notifications'] = $this->model->getNotifications();
 
         Base::redirectTo('/create');
+    }
+
+    /**
+     * @param int $id
+     */
+    public function editTaskAction(int $id) : void
+    {
+        if (AuthModel::isLoggedIn()) {
+            $data = $this->model->getTaskById($id);
+
+            $this->container->twig->display('edit_task.html.twig', [
+                'task_data' => $data,
+            ]);
+        } else {
+            Base::redirectTo('/');
+        }
+    }
+
+    public function editTask()
+    {
+        $params = SimpleRouter::request()->getInput()->post;
+
+        $this->model->updateTask($params);
+
+        $_SESSION['notifications'] = $this->model->getNotifications();
+
+        Base::redirectTo('/edit-task/' . $params['id']->value);
     }
 }

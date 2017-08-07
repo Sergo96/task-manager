@@ -11,6 +11,9 @@
                 <p>Description: <br>
                     {{ task_data.text }}
                 </p>
+                {% if is_logged_in %}
+                    <a href="/edit-task/{{ task_data.id }}">Edit task</a>
+                {% endif %}
             </div>
 
             {% if task_data.image_path|length > 0 %}

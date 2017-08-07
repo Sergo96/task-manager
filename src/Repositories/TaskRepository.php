@@ -112,4 +112,30 @@ VALUES (:title, :text, :author_name, :author_email, :status, :image_hash)
            ':image_hash'    => $image_hash,
         ]);
     }
+
+    public function updateTask(
+        int $id,
+        ?string $title,
+        ?string $author_email,
+        ?string $author_name,
+        ?string $status,
+        ?string $description
+    ) : bool
+    {
+        $statement = $this->db->prepare("
+  UPDATE `tasks` 
+  SET `title` = :title, `text` = :description, `author_name` = :author_name,
+  `email` = :author_email, `status` = :status
+  WHERE `id` = :id
+        ");
+
+        return $statement->execute([
+           ':title' => $title,
+           ':description' => $description,
+           ':author_name' => $author_name,
+           ':author_email' => $author_email,
+           ':status' => $status,
+           ':id' => $id,
+        ]);
+    }
 }

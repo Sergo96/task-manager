@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Edit task{% endblock %}
+
+{% block content %}
+    <div class="well">
+        <form method="post">
+            <div class="form-group">
+                <label for="task-title">Title</label>
+                <input class="form-control" value="{{ task_data.title }}" name="task_title" id="task-title" placeholder="Enter title">
+            </div>
+            <div class="form-group">
+                <label for="author-email">Email</label>
+                <input type="email" value="{{ task_data.author_email }}" class="form-control" name="author_email" id="author-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="author-name">Your name</label>
+                <input class="form-control" value="{{ task_data.author_name }}" name="author_name" id="author-name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="task-status">Task status</label>
+                <select class="form-control" name="task_status" id="task-status">
+                    <option {% if task_data.status == 'todo' %} selected {% endif %}>todo</option>
+                    <option {% if task_data.status == 'in dev' %} selected {% endif %}>in dev</option>
+                    <option {% if task_data.status == 'in test' %} selected {% endif %}>in test</option>
+                    <option {% if task_data.status == 'done' %} selected {% endif %}>done</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="task-description">Task description</label>
+                <textarea class="form-control" name="task_description" id="task-description" rows="3">{{ task_data.text }}</textarea>
+            </div>
+            <div class="text-right">
+                <input type="hidden" name="id" value="{{ task_data.id }}">
+                <button type="submit" class="btn btn-lg btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

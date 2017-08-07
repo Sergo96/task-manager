@@ -97,11 +97,11 @@ class TaskModel extends BaseModel
     {
         $result = false;
 
-        $title = $data['task_title']->value;
-        $author_email = $data['author_email']->value;
-        $author_name = $data['author_name']->value;
-        $task_status = $data['task_status']->value;
-        $task_description = $data['task_description']->value;
+        $title = trim($data['task_title']->value);
+        $author_email = trim($data['author_email']->value);
+        $author_name = trim($data['author_name']->value);
+        $task_status = trim($data['task_status']->value);
+        $task_description = trim($data['task_description']->value);
         $task_image = $data['task_image']->value;
 
         if ($this->checkTaskParams(
@@ -130,6 +130,54 @@ class TaskModel extends BaseModel
             } else {
                 $this->setNotification('Task created');
             }
+        }
+
+        return $result;
+    }
+
+
+    /**
+     * @param array $data
+     *
+     * @return bool
+     */
+    public function updateTask(array $data) : bool
+    {
+        $result = false;
+
+        $id = trim((int)$data['id']->value);
+        $title = trim($data['task_title']->value);
+        $author_email = trim($data['author_email']->value);
+        $author_name = trim($data['author_name']->value);
+        $task_status = trim($data['task_status']->value);
+        $task_description = trim($data['task_description']->value);
+
+        if (AuthModel::isLoggedIn()) {
+            if ($this->checkTaskParams(
+                $title,
+                $author_email,
+                $author_name,
+                $task_status,
+                $task_description
+            )) {
+
+                $result = $this->repository->updateTask(
+                    $id,
+                    $title,
+                    $author_email,
+                    $author_name,
+                    $task_status,
+                    $task_description
+                );
+
+                if ($result) {
+                    $this->setNotification('Task was successfully updated!');
+                } else {
+                    $this->setNotification('Something goes wrong', BaseModel::NOTIFICATION_TYPE_ERROR);
+                }
+            }
+        } else {
+            $this->setNotification("Only admins can edit tasks", BaseModel::NOTIFICATION_TYPE_ERROR);
         }
 
         return $result;
