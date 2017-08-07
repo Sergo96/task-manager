@@ -1,0 +1,9 @@
+RewriteEngine On
+#RewriteBase /My-Project/
+
+AddHandler application/x-httpd-php-7.1 .php
+
+RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=301]
+
+RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
