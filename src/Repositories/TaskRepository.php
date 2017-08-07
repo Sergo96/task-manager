@@ -5,22 +5,33 @@ namespace ToDo\Repositories;
 class TaskRepository extends BaseRepository
 {
     /**
-     * @param int $offset
-     * @param int $count
+     * @param int         $offset
+     * @param int         $count
+     *
+     * @param null|string $search_by
+     * @param null|string $search_string
      *
      * @return array
      */
-    public function getTasksList(int $offset, int $count) : array
+    public function getTasksList(int $offset, int $count, ?string $search_by = '', ?string $search_string = '') : array
     {
-        $statement = $this->db->prepare("
+        $where = !empty($search_by) ? "WHERE `{$search_by}` LIKE :search_string" : "";
+        $sql = "
 SELECT `id`, `title`, `author_name`, `email`, `status`, `image_hash`
 FROM `tasks`
+{$where}
 ORDER BY `id` DESC
-LIMIT :start, :amount"
-        );
+LIMIT :start, :amount";
+
+        $statement = $this->db->prepare($sql);
 
         $statement->bindParam(':start', $offset, \PDO::PARAM_INT);
         $statement->bindParam(':amount', $count, \PDO::PARAM_INT);
+
+        if (!empty($search_by)) {
+            $search_string = "%$search_string%";
+            $statement->bindParam(':search_string', $search_string, \PDO::PARAM_STR);
+        }
 
         $statement->execute();
 
@@ -31,11 +42,23 @@ LIMIT :start, :amount"
     /**
      * Get number of total tasks in system
      *
+     * @param null|string $search_by
+     * @param null|string $search_string
+     *
      * @return int
      */
-    public function getTasksCount() : int
+    public function getTasksCount(?string $search_by = '', ?string $search_string = '') : int
     {
-        $result = $this->db->query("SELECT COUNT(`id`) as 'count' FROM `tasks`");
+        $where = !empty($search_by) ? "WHERE `{$search_by}` LIKE :search_string" : "";
+        $sql = "SELECT COUNT(`id`) as 'count' FROM `tasks` {$where}";
+        $result = $this->db->prepare($sql);
+
+        if (!empty($search_by)) {
+            $search_string = "%$search_string%";
+            $result->bindParam(':search_string', $search_string);
+        }
+
+        $result->execute();
 
         return (int)$result->fetch()['count'];
     }

@@ -13,6 +13,6 @@ SimpleRouter::post('/create/', 'TaskController@createTask', [
 SimpleRouter::get('/task/{id}', 'TaskController@taskByIdAction', [
     'where' => ['id' => '[0-9]+'],
 ]);
-SimpleRouter::get('/{page?}', 'TaskController@tasksListAction', [
+SimpleRouter::get('/{page?}/{search_by?}{search_string?}', 'TaskController@tasksListAction', [
     'where' => ['page' => '[0-9]+'],
 ]);

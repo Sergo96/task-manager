@@ -8,6 +8,35 @@
     </div>
     <hr>
     <div class="row">
+        <div class="well">
+            <form id="search-form" class="form">
+                <h4>Search</h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" id="search-keyword" value="{{ saved_data.search_string }}" class="form-control input-lg" placeholder="Enter keyword">
+                    </div>
+
+                    <div class="col-md-2">
+                        <select id="search_by" name="search_by" class="form-control input-lg">
+                            <option value="status" {% if saved_data.search_by == 'status' %} selected {% endif %}>By status</option>
+                            <option value="author_name" {% if saved_data.search_by == 'author_name' %} selected {% endif %}>By name</option>
+                            <option value="email" {% if saved_data.search_by == 'email' %} selected {% endif %}>By email</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <span class="input-group-btn">
+                            <button id="search-button" class="btn btn-lg btn-primary" type="button">
+                                Search
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
     {% for task in tasks %}
             <div class="col-sm-4 col-xs-6">
                 <div class="panel panel-default">
@@ -30,4 +59,6 @@
     <div class="row text-center">
         {{ pagination|raw }}
     </div>
+
+    <script src="/assets/pages/tasks_list.js?v20170807230400"></script>
 {% endblock %}
