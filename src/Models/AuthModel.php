@@ -2,11 +2,6 @@
 
 namespace ToDo\Models;
 
-use ToDo\Repositories\AuthRepository;
-
-/**
- * @property AuthRepository repository
- */
 class AuthModel extends BaseModel
 {
     /**
@@ -23,8 +18,6 @@ class AuthModel extends BaseModel
     public function __construct(\PDO $db)
     {
         parent::__construct($db);
-
-        $this->repository = new AuthRepository($db);
     }
 
     /**
