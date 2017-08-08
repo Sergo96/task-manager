@@ -6,9 +6,7 @@ SimpleRouter::get('/login/', 'AuthController@loginPageAction');
 SimpleRouter::post('/login/', 'AuthController@login');
 
 SimpleRouter::get('/create/', 'TaskController@createTaskAction');
-SimpleRouter::post('/create/', 'TaskController@createTask', [
-    
-]);
+SimpleRouter::post('/create/', 'TaskController@createTask');
 
 SimpleRouter::post('/edit-task', 'TaskController@editTask');
 SimpleRouter::get('/edit-task/{id}', 'TaskController@editTaskAction', [
