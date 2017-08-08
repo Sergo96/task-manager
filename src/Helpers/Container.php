@@ -57,7 +57,7 @@ class Container
         if (!isset($this->services[$name])) {
             switch ($name) {
                 case 'db': {
-                    $service = new \PDO('mysql:host=localhost;dbname=todo', 'root', 'qwerty', [\PDO::FETCH_ASSOC => true]);
+                    $service = new \PDO('mysql:host=localhost;dbname=tasksman_todo', 'tasksman_root', '123456', [\PDO::FETCH_ASSOC => true]);
                     $service->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
                 } break;
 
@@ -66,7 +66,7 @@ class Container
                 } break;
 
                 case 'twig': {
-                    $loader = new \Twig_Loader_Filesystem($_SERVER['DOCUMENT_ROOT'] . "/../views");
+                    $loader = new \Twig_Loader_Filesystem($_SERVER['DOCUMENT_ROOT'] . "/views");
                     $service = new \Twig_Environment($loader);
                     $service->addGlobal('notifications', $_SESSION['notifications'] ?? []);
                     $service->addGlobal('is_logged_in', AuthModel::isLoggedIn());
