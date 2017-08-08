@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_errors', 1); // TODO remove
+ini_set('display_errors', 0);
 
 session_start();
 
