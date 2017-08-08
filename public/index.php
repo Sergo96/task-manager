@@ -2,11 +2,11 @@
 
 use Pecee\SimpleRouter\SimpleRouter;
 
-require_once('../src/bootstrap.php');
+require_once(__DIR__ . '/../src/bootstrap.php');
 
 SimpleRouter::setDefaultNamespace('\ToDo\Controllers');
 
-require_once('../src/routes.php');
+require_once(__DIR__ . '/../src/routes.php');
 
 SimpleRouter::start();
 
