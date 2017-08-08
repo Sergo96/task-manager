@@ -15,6 +15,6 @@ SimpleRouter::get('/edit-task/{id}', 'TaskController@editTaskAction', [
 SimpleRouter::get('/task/{id}', 'TaskController@taskByIdAction', [
     'where' => ['id' => '[0-9]+'],
 ]);
-SimpleRouter::get('/{page?}/{search_by?}{search_string?}', 'TaskController@tasksListAction', [
+SimpleRouter::get('/{page?}/{order_by?}/{search_by?}{search_string?}', 'TaskController@tasksListAction', [
     'where' => ['page' => '[0-9]+'],
 ]);

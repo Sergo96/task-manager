@@ -8,19 +8,20 @@ class TaskRepository extends BaseRepository
      * @param int         $offset
      * @param int         $count
      *
+     * @param null|string $order_by
      * @param null|string $search_by
      * @param null|string $search_string
      *
      * @return array
      */
-    public function getTasksList(int $offset, int $count, ?string $search_by = '', ?string $search_string = '') : array
+    public function getTasksList(int $offset, int $count, ?string $order_by = 'id', ?string $search_by = '', ?string $search_string = '') : array
     {
         $where = !empty($search_by) ? "WHERE `{$search_by}` LIKE :search_string" : "";
         $sql = "
 SELECT `id`, `title`, `author_name`, `email`, `status`, `image_hash`
 FROM `tasks`
 {$where}
-ORDER BY `id` DESC
+ORDER BY {$order_by} DESC
 LIMIT :start, :amount";
 
         $statement = $this->db->prepare($sql);

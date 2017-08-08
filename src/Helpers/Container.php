@@ -1,6 +1,7 @@
 <?php
 
 namespace ToDo\Helpers;
+
 use ToDo\Models\AuthModel;
 
 /**

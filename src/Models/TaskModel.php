@@ -6,7 +6,6 @@ use ToDo\Helpers\Base;
 use ToDo\Repositories\TaskRepository;
 use JasonGrimes\Paginator;
 
-
 /**
  * @property TaskRepository repository
  */
@@ -14,6 +13,7 @@ class TaskModel extends BaseModel
 {
     const ALLOWED_TASKS_STATUSES = ['todo', 'in dev', 'in test', 'done'];
     const SEARCH_BY_FIELDS = ['status', 'author_name', 'email'];
+    const ORDER_BY_FIELDS = ['id', 'status', 'author_name', 'email'];
 
     public function __construct($db)
     {
@@ -24,20 +24,21 @@ class TaskModel extends BaseModel
 
     /**
      * @param int|null    $page
-     *
+     * @param null|string $order_by
      * @param null|string $search_by
      * @param null|string $search_string
      *
      * @return array
      */
-    public function getTasksList(?int $page = 1, ?string $search_by = '', ?string $search_string = '') : array
+    public function getTasksList(?int $page = 1, ?string $order_by = 'id', ?string $search_by = '', ?string $search_string = '') : array
     {
         $tasks_list = [];
         $page = ($page >= 1 ? $page : 1);
         $offset = ($page - 1) * ITEMS_PER_PAGE;
         $search_by = (!empty($search_by) && in_array($search_by, self::SEARCH_BY_FIELDS)) ? $search_by : '';
+        $order_by = in_array($order_by, self::ORDER_BY_FIELDS) ? $order_by : 'id';
         $total_tasks_count = $this->repository->getTasksCount($search_by, $search_string);
-        $tasks_data = $this->repository->getTasksList($offset, ITEMS_PER_PAGE, $search_by, $search_string);
+        $tasks_data = $this->repository->getTasksList($offset, ITEMS_PER_PAGE, $order_by, $search_by, $search_string);
 
         foreach($tasks_data as $task) {
             $tasks_list[] = [
@@ -57,12 +58,14 @@ class TaskModel extends BaseModel
                 $total_tasks_count,
                 ITEMS_PER_PAGE,
                 $page,
-                '/(:num)/' . (!empty($search_by) ? $search_by . '/' . $search_string . '/' : '')
+                '/(:num)/' . (!empty($order_by) ? $order_by . '/' : '') . (!empty($search_by) ? $search_by . '/' . $search_string . '/' : '')
             );
             $pagination->setMaxPagesToShow(MAX_PAGES_SHOW);
         }
 
         return [
+            'page' => $page,
+            'order_by' => $order_by,
             'tasks' => $tasks_list,
             'pagination' => $pagination,
         ];

@@ -12,15 +12,25 @@
             <form id="search-form" class="form">
                 <h4>Search</h4>
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <input type="text" id="search-keyword" value="{{ saved_data.search_string }}" class="form-control input-lg" placeholder="Enter keyword">
+                    </div>
+
+
+                    <div class="col-md-2">
+                        <select id="order_by" name="order_by" class="form-control input-lg">
+                            <option value="id" {% if saved_data.order_by == 'id' %} selected {% endif %}>Order by id</option>
+                            <option value="status" {% if saved_data.order_by == 'status' %} selected {% endif %}>Order by status</option>
+                            <option value="author_name" {% if saved_data.order_by== 'author_name' %} selected {% endif %}>Order by name</option>
+                            <option value="email" {% if saved_data.order_by == 'email' %} selected {% endif %}>Order by email</option>
+                        </select>
                     </div>
 
                     <div class="col-md-2">
                         <select id="search_by" name="search_by" class="form-control input-lg">
-                            <option value="status" {% if saved_data.search_by == 'status' %} selected {% endif %}>By status</option>
-                            <option value="author_name" {% if saved_data.search_by == 'author_name' %} selected {% endif %}>By name</option>
-                            <option value="email" {% if saved_data.search_by == 'email' %} selected {% endif %}>By email</option>
+                            <option value="status" {% if saved_data.search_by == 'status' %} selected {% endif %}>Search by status</option>
+                            <option value="author_name" {% if saved_data.search_by == 'author_name' %} selected {% endif %}>Search by name</option>
+                            <option value="email" {% if saved_data.search_by == 'email' %} selected {% endif %}>Search by email</option>
                         </select>
                     </div>
 
@@ -64,5 +74,12 @@
         {{ pagination|raw }}
     </div>
 
-    <script src="/assets/pages/tasks_list.js?v20170807230400"></script>
+    <div id="init_params"
+        data-page="{{ saved_data.page }}"
+        data-order_by="{{ saved_data.order_by }}"
+        data-search_by="{{ saved_data.search_by }}"
+        data-search_string="{{ saved_data.search_string }}"
+    ></div>
+
+    <script src="/assets/pages/tasks_list.js?v20170808215400"></script>
 {% endblock %}

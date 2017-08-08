@@ -21,18 +21,21 @@ class TaskController extends BaseController
 
     /**
      * @param int         $page
+     * @param null|string $order_by
      * @param null|string $search_by
      * @param null|string $search_string
      */
-    public function tasksListAction(?int $page = 1, ?string $search_by = '', ?string $search_string = '') : void
+    public function tasksListAction(?int $page = 1, ?string $order_by = 'id', ?string $search_by = '', ?string $search_string = '') : void
     {
-        $data = $this->model->getTasksList($page, $search_by, $search_string);
+        $data = $this->model->getTasksList($page, $order_by, $search_by, $search_string);
 
         $this->container->twig->display('tasks_list.html.twig', [
             'tasks' => $data['tasks'],
             'saved_data' => [
-                'search_string' => $search_string,
+                'page' => $data['page'],
+                'order_by' => $data['order_by'],
                 'search_by' => $search_by,
+                'search_string' => $search_string,
             ],
             'pagination' => $data['pagination'],
         ]);
